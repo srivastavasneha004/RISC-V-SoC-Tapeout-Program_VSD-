@@ -18,9 +18,10 @@ The following screenshots demonstrate successful installation and setup of essen
 
 ```
 Week 0/
-├── yosys.jpg      # Yosys tool installation verification
-├── Iverilog.jpg   # Iverilog installation verification
-└── gtkwave.jpg    # GTKWave installation verification
+└── assets/
+    ├── yosys.jpg      # Yosys tool installation verification
+    ├── Iverilog.jpg   # Iverilog installation verification
+    └── gtkwave.jpg    # GTKWave installation verification
 ```
 
 ## Author
