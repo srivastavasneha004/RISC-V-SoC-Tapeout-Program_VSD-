@@ -1,0 +1,54 @@
+Creative Commons Attribution 4.0 International License
+
+Copyright (c) 2025 Sneha Srivastava
+
+This work is licensed under the Creative Commons Attribution 4.0 International License.
+
+You are free to:
+- Share — copy and redistribute the material in any medium or format
+- Adapt — remix, transform, and build upon the material
+for any purpose, even commercially.
+
+Under the following terms:
+- Attribution — You must give appropriate credit, provide a link to the license, 
+  and indicate if changes were made. You may do so in any reasonable manner, 
+  but not in any way that suggests the licensor endorses you or your use.
+
+No additional restrictions — You may not apply legal terms or technological 
+measures that legally restrict others from doing anything the license permits.
+
+Notices:
+You do not have to comply with the license for elements of the material in the 
+public domain or where your use is permitted by an applicable exception or limitation.
+
+No warranties are given. The license may not give you all of the permissions 
+necessary for your intended use. For example, other rights such as publicity, 
+privacy, or moral rights may limit how you use the material.
+
+Full license text available at: https://creativecommons.org/licenses/by/4.0/legalcode
+
+---
+
+ACKNOWLEDGMENTS:
+
+This work is based on the RTL Design and Synthesis Workshop using Sky130 technology, 
+originally developed by:
+
+- VSD-IAT (VLSI System Design - Intelligence and Automation Technologies)
+- Kunal Ghosh, Co-founder of VLSI System Design (VSD) Corp. Pvt. Ltd.
+- Workshop contributors and open-source EDA tool developers
+
+Original workshop materials and concepts are attributed to their respective creators.
+This repository represents the personal learning journey and documentation of 
+workshop completion by Sneha Srivastava.
+
+Open source tools acknowledgment:
+- Yosys synthesis framework
+- Icarus Verilog simulator  
+- GTKWave waveform viewer
+- Sky130 Process Design Kit by SkyWater Technology
+
+Educational Use Disclaimer:
+This repository is created for educational purposes to document learning outcomes 
+from the RTL design workshop. All synthesis results, waveforms, and analysis 
+represent actual hands-on laboratory work completed during the workshop.

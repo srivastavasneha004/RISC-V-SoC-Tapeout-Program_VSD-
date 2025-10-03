@@ -32,6 +32,48 @@ Week 0/
 
 ---
 
+## 📅 Week 1 — RTL Design and Synthesis
+
+| Task | Description | Status |
+|------|-------------|--------|
+| Day 1-5 | 🔧 RTL Workshop — Comprehensive RTL design and synthesis training | ✅ Done |
+
+## 🌟 Key Learnings from Week 1
+
+- Mastered RTL design fundamentals and Verilog coding
+- Learned synthesis techniques using Yosys
+- Explored timing analysis and optimization strategies
+- Hands-on experience with industry-standard EDA workflows
+
+---
+
+## 📅 Week 2 — SoC Design Fundamentals
+
+| Task | Description | Status |
+|------|-------------|--------|
+| Task 1 | 🏗️ SoC Architecture — Understanding System-on-Chip design principles | ✅ Done |
+| Task 2 | 🧠 VSDBabySoC — RISC-V based SoC simulation and analysis | ✅ Done |
+
+## 🌟 Key Learnings from Week 2
+
+- Deep dive into SoC architecture and design methodology
+- Hands-on experience with VSDBabySoC (RISC-V + PLL + DAC)
+- Understanding of digital-to-analog conversion in SoC context
+- Pre-synthesis simulation and waveform analysis
+
+### Files Structure
+
+```
+Week 2/
+├── README.md          # Comprehensive SoC design documentation
+└── Images/
+    ├── BabySoC_block.png              # SoC block diagram
+    ├── Task2_pre_synth_simualtion_final.png  # Simulation results
+    └── ...                            # Additional diagrams and screenshots
+```
+
+---
+
 ## 🙏 Acknowledgment
 
 I am thankful to **Kunal Ghosh** and **Team VLSI System Design (VSD)** for the opportunity to participate in the ongoing RISC-V SoC Tapeout Program.
