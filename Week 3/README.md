@@ -87,8 +87,5 @@ Week 3 covers post-synthesis verification (GLS) and timing validation (STA). The
 
 ---
 
-If you'd like, I can:
-- push these changes to GitHub (commit & push)
-- add a short README inside `Task/` listing the submitted PDFs
-- create a tiny `scripts/` folder with an example OpenSTA TCL wrapper to reproduce the reports
+
 
