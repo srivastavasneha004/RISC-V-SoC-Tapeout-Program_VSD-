@@ -72,11 +72,14 @@ report_worst_slack -min -digits 4 > ./STA_OUTPUT/sta_worst_min_slack.txt
 ---
 
 📅 **Summary – By End of Week 3**
+
 ✅ Perform Gate-Level Simulation (GLS) and verify post-synthesis correctness.
 
 ✅ Understand STA fundamentals (setup/hold, slack, clock, and timing paths).
 
 ✅ Use OpenSTA to perform real-world timing analysis and interpret timing reports.
+
+---
 
 ✍️ Author
 Name: Sneha Srivastava
