@@ -1,94 +1,88 @@
-# ⚡️ Gate-Level Simulation (GLS) & Static Timing Analysis (STA) — Week 3
+## 🧠 Week 3 Task – Post-Synthesis GLS & STA Fundamentals
 
-This Week 3 folder documents post-synthesis verification for VSDBabySoC:
-- Gate-Level Simulation (GLS) using synthesized netlist
-- Static Timing Analysis (STA) using OpenSTA across PVT corners
+### 🎯 Objective
+The goal of this week’s task is to:
 
-Folders
-- `Images/` — screenshots and plots (OpenSTA, timing graphs, flow diagrams)
-- `STA_OUTPUT/` — raw STA outputs and per-lib reports
-- `Task/` — submitted task PDFs (week3_Part1.pdf, Week3_part2.pdf, week3_Part3.pdf)
+- Perform Gate-Level Simulation (GLS) after synthesis to validate post‑synthesis functionality.
+- Understand the fundamentals of Static Timing Analysis (STA) and perform basic timing checks using OpenSTA.
+- Generate and interpret timing graphs to identify setup/hold violations and analyze slack.
 
 ---
 
-## ⚡️ Gate-Level Simulation (GLS) of BabySoC
+### 🧩 Part 1 – Post‑Synthesis GLS
 
-### Purpose
-GLS verifies functionality after synthesis using gate-level netlist and annotated delays (SDF). This captures gate delays and cell-specific timing behavior.
+**Objective:** Verify that the synthesized design behaves functionally the same as the RTL (Week 2 functional simulation).
 
-### Typical GLS Flow (commands summary)
-```bash
-# After synthesis & write_verilog
-# 1. Compile gate-level testbench
-iverilog -o output/post_synth_sim/post_synth_sim.out -DPOST_SYNTH_SIM -I ./output/src/include -I ./output/src/module ./output/src/module/testbench.v
+**Reference:** GLS Reference – VSD_HDP: Day 6
 
-# 2. Run simulation
-./output/post_synth_sim/post_synth_sim.out
+**Steps**
+1. Perform Synthesis (Yosys) and generate the synthesized netlist and logs (`synth.log`).
+2. Run Gate‑Level Simulation (GLS) using the synthesized netlist with a gate‑level testbench (Icarus Verilog / iverilog).
+3. Compare GLS waveform with RTL functional waveform — they should match for functional correctness.
 
-# 3. View waveforms
-gtkwave output/post_synth_sim/post_synth_sim.vcd
+**Deliverables**
+- `synth.log` — synthesis log files
+- `gls_waveform.png` — GLS simulation waveform screenshot (put in `Images/`)
+- `GLS_vs_Functional_Notes.txt` — short note confirming GLS output = Functional output
+
+---
+
+### 🧮 Part 2 – Fundamentals of STA (Static Timing Analysis)
+
+**Objective:** Learn STA concepts: setup/hold checks, slack, clock definitions, and path‑based analysis.
+
+**Deliverable**
+- `STA_KeyNotes.pdf` — one‑page summary with definitions and interpretations (setup, hold, slack, clock constraints, critical paths)
+
+---
+
+### ⚡ Part 3 – Generate Timing Graphs with OpenSTA
+
+**Objective:** Perform STA using OpenSTA and visualize timing paths and slack.
+
+**Steps**
+1. Load netlist and constraints inside OpenSTA:
+
+```tcl
+read_verilog output/synth/vsdbabysoc.synth.v
+read_liberty ./STA_OUTPUT/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_sdc ./vsdbabysoc_synthesis.sdc
+link_design vsdbabysoc
 ```
 
-### Snapshots (see `Images/`)
-- `Task1_Pre_Post_simualtionCompare.png` — pre vs post synthesis waveform comparison
-- `Task1_Post_simulation.png` — post-synthesis waveform
+2. Run timing checks and collect reports:
 
----
-
-## ⏱️ Static Timing Analysis (STA) using OpenSTA
-
-### Purpose
-Static Timing Analysis checks setup/hold timing across all paths without vectors. It reports WNS (Worst Negative Slack), TNS (Total Negative Slack), and per-corner metrics.
-
-### Typical OpenSTA flow (TCL)
 ```tcl
-# Example commands inside OpenSTA
-read_liberty -min ./STA_OUTPUT/sky130_fd_sc_hd__tt_025C_1v80.lib
-read_liberty -max ./STA_OUTPUT/sky130_fd_sc_hd__tt_025C_1v80.lib
-read_verilog ./vsdbabysoc.synth.v
-link_design vsdbabysoc
-read_sdc ./vsdbabysoc_synthesis.sdc
-check_setup
-report_checks -path_delay min_max -digits 4 > ./STA_OUTPUT/sta_report.txt
+report_checks -path_delay max -fields {slew capacitance delay slack} > ./STA_OUTPUT/sta_report_max.txt
+report_checks -path_delay min -fields {slew capacitance delay slack} > ./STA_OUTPUT/sta_report_min.txt
 report_wns -digits 4 > ./STA_OUTPUT/sta_wns.txt
 report_tns -digits 4 > ./STA_OUTPUT/sta_tns.txt
 report_worst_slack -max -digits 4 > ./STA_OUTPUT/sta_worst_max_slack.txt
 report_worst_slack -min -digits 4 > ./STA_OUTPUT/sta_worst_min_slack.txt
 ```
 
-### PVT corners
-The provided `STA_OUTPUT/` directory contains min/max timing reports for multiple PVT corners (lib files are present as `.txt`).
+3. Capture timing path screenshots and save plots in `Images/` (e.g. `timing_graph.png`, `WNS.png`, `TNS.png`).
 
-### Visualizations (in `Images/`)
-- `WNS.png`, `TNS.png` — WNS/TNS plots
-- `Worst_Setup_Slack.png`, `Worst_Hold_Slack.png` — slack visualizations
-- `STA_All_Metrics.png` / `STA_AllMetrics.png` — combined metrics across corners
-- `flow.png`, `opensta.png`, `paths.png` — flow and example path diagrams
-
----
-
-## 📂 Files included (local)
-- `Task/week3_Part1.pdf`
-- `Task/Week3_part2.pdf`
-- `Task/week3_Part3.pdf`
-- `STA_OUTPUT/` — min/max lib reports, `sta_tns.txt`, `sta_wns.txt`, `sta_worst_*` files
-- `Images/` — multiple plots and diagrams
+**Deliverables**
+- `opensta_script.tcl` — OpenSTA TCL script
+- `timing_report.txt` — STA timing report output
+- `timing_graph.png` — timing path/graph screenshot (with userid & timestamp)
+- `Observations.txt` — notes on critical path and slack interpretation
 
 ---
 
-## 🔧 Notes & Troubleshooting
-- If OpenSTA reports "library already exists" or parsing errors, check Liberty file syntax (use /* ... */ for comments, not //).
-- For path issues, verify the `read_verilog` path points to the synthesized netlist (`vsdbabysoc.synth.v`).
+📅 **Summary – By End of Week 3**
+✅ Perform Gate-Level Simulation (GLS) and verify post-synthesis correctness.
 
----
+✅ Understand STA fundamentals (setup/hold, slack, clock, and timing paths).
 
-## 🧾 Summary
-Week 3 covers post-synthesis verification (GLS) and timing validation (STA). The included reports and images summarize timing metrics across PVT corners and compare pre/post synthesis behavior.
+✅ Use OpenSTA to perform real-world timing analysis and interpret timing reports.
 
----
+✍️ Author
+Name: Sneha Srivastava
 
-If you'd like, I can:
-- push these changes to GitHub (commit & push)
-- add a short README inside `Task/` listing the submitted PDFs
-- create a tiny `scripts/` folder with an example OpenSTA TCL wrapper to reproduce the reports
+Project: Week 3 – Post-Synthesis GLS & STA Fundamentals
+
+Tools Used: Yosys, Icarus Verilog, GTKWave, OpenSTA
+
 
