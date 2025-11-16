@@ -117,6 +117,28 @@ This repository documents my week-by-week progress with tasks inside each week.
 
 ---
 
+## 📅 Week 7 — VSDBabySoc Physical Design & Post-Route Parasitic Extraction
+
+| Task | Description | Status |
+|------|-------------|--------|
+| [**Task 1**]|🔧 OpenROAD-flow-scripts installation, VSDBabySoC file organization, and RTL synthesis with Yosys | ✅ Done |
+| [**Task 2**]|	📐 Floorplan execution with macro placement for analog blocks (PLL & DAC) |	✅ Done |
+| [**Task 3**]|	📍 Global and detailed placement with density heat map analysis and legalization | ✅ Done |
+| [**Task 4**]|	⏰ Clock Tree Synthesis achieving 0.65ns skew, timing closure (WNS=5.55ns), and power analysis |	✅ Done |
+| [**Task 5**]|	🛣️ Global and detailed routing with zero DRC violations for clean layout |	✅ Done |
+| [**Task 6**]|	📊 Post-route SPEF (Standard Parasitic Exchange Format) generation for accurate timing sign-off | ✅ Done |
+
+### 🌟 Key Learnings from Week 7
+
+- Executed complete OpenROAD physical design flow for VSDBabySoC from synthesis to GDSII with analog macro integration.
+- Fixed Liberty file power pin syntax (pg_pin) for PLL/DAC macros to enable proper OpenROAD parsing.
+- Achieved timing closure (WNS=5.55ns, TNS=0ns) with optimized CTS reducing clock skew to 0.65ns.
+- Completed zero-violation routing and generated post-route SPEF for accurate parasitic extraction.
+- Learned pre-route vs post-route STA accuracy - SPEF-based analysis reduces timing error from ~30% to <5%.
+
+---
+
+
 ## 🙏 Acknowledgment
 
 I am thankful to [**Kunal Ghosh**](https://github.com/kunalg123) and Team **[VLSI System Design (VSD)](https://vsdiat.vlsisystemdesign.com/)** for the opportunity to participate in the ongoing **RISC-V SoC Tapeout Program**.  
